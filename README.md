@@ -1,64 +1,69 @@
-🚀 Azure Demand Forecasting – Milestone 1
+🚀 Azure Demand Forecasting
 📌 Project Overview
 
 This project focuses on forecasting Azure Compute and Storage demand using Machine Learning techniques.
+The objective is to analyze Azure resource usage patterns and build predictive models for demand forecasting using historical data.
+This repository currently contains Milestone 1 & Milestone 2 combined in a single notebook file (milestone.ipynb).
 
-Milestone 1 covers data collection, cleaning, and preparation to build a reliable dataset for future modeling.
+🗂️ Project Structure
+Azure-Demand-Forecasting/
+│
+├── azure_usage.csv
+├── milestone.ipynb
+└── README.md
+📊 Dataset Used
+📁 azure_usage.csv
 
-📊 Datasets Used
+The dataset contains:
+-timestamp
+-Azure Region
+-CPU Usage
+-Storage Usage
+-Active Users
 
-azure_usage.csv – Simulated Azure compute & storage usage data
+This dataset is used for time-series forecasting of Azure demand.
 
-external_factors.csv – Economic indicators and cloud market demand data
-
-🧼 Data Preparation
-
+🧼 Data Preparation (Milestone 1)
 Converted date column to datetime format
+Checked and handled missing values
+Verified data types
+Cleaned column names
+Sorted dataset based on date for time-series consistency
 
-Handled missing values using forward fill where required
+✅ Cleaned dataset prepared for modeling
 
-Verified data types and cleaned column names
+🤖 Feature Engineering & Model Development (Milestone 2)
+🔹 Feature Engineering
 
-Merged internal Azure usage data with external factors using date
+Created lag features for CPU and Storage usage
+Generated rolling statistics (mean, standard deviation)
+Extracted time-based features (month, day, quarter)
+Performed time-based train-test split
 
-Sorted dataset for time-series consistency
+🔹 Model Building
+
+Applied regression models for demand forecasting
+
+Trained model on historical Azure usage data
 
 📈 Key Insights
 
-Multiple Azure regions analyzed
+CPU usage trends vary across regions
+Storage demand shows steady growth patterns
+Active users significantly influence resource usage
+Time-based features improve forecasting performance
 
-CPU and Storage usage trends observed
+🛠️ Tech Stack
 
-Active user variation studied
+Python
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+Jupyter Notebook
 
-Economic index and market demand patterns identified
+📌 Current Status
 
-✅ Final Output
-
-Cleaned and merged dataset saved for feature engineering and model development.
-
-This dataset is ready for:
-
-Lag feature creation
-
-Time-series forecasting
-
-Machine learning model training
-
-⚙️ Requirements
--pandas
--numpy
--matplotlib
--seaborn
--jupyter
-
-🚀 Next Step
-
-Milestone 2 will focus on:
-
-* Feature engineering
-
-* Model building
-
-* Forecast evaluation
-
+✅ Data Cleaning Completed
+✅ Feature Engineering Completed
