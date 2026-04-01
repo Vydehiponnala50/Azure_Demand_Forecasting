@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  azure-ml-api:
+    build: .
+    container_name: azure_forecast_api
+    ports:
+      - "10000:10000"
+    volumes:
+      - ./data:/app/data
+      - ./app/models:/app/app/models
+    environment:
+      - PORT=10000
+    restart: unless-stopped
+    
+  # Mocking a secondary batch runner container (Scaling best practice)
+  batch-runner:
+    build: .
+    container_name: azure_batch_job
+    volumes:
+      - ./data:/app/data
+      - ./app/models:/app/app/models
+    command: ["python", "scripts/scheduler.py"]
+    depends_on:
+      - azure-ml-api
+    restart: always

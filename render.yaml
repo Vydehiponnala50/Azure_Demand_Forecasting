@@ -1,0 +1,22 @@
+services:
+  # Backend: FastAPI Web Service
+  - type: web
+    name: azure-forecast-backend
+    runtime: python
+    buildCommand: python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+
+  # Frontend: Static Site
+  - type: static
+    name: azure-forecast-dashboard
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.10.0
+      - key: VITE_API_URL
+        value: "https://azure-forecast-backend.onrender.com"

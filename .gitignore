@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+
+# Models and Data
+models/*.pkl
+data/*.csv
+logs/*.log
+
+# Node.js
+node_modules/
+dist/
+.env
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/

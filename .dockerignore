@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+dist/
+venv/
+.env
+
+# Folders ignored by git but used by app (should stay local)
+data/
+app/models/*.pkl
+app/models/*.json
+
+# Logs
+logs/
+*.log
+
+# Git
+.git/
+.github/
+
+# Others
+__pycache__/
+.vscode/
+.idea/
+README.md
+LICENSE
+Dockerfile
+docker-compose.yml
+render.yaml
