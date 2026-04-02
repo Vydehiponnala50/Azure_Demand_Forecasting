@@ -32,7 +32,7 @@ An end-to-end enterprise-grade MLOps platform designed to forecast Azure resourc
 ---
 
 ## 📺 Live Demo
-[Azure_Demand Forecasting - Live Dashboard](http://localhost:5173)
+[Azure_Demand Forecasting - Live Dashboard](http://localhost:5173.com)
 
 ## 🎥 Project Demo Video
 
