@@ -1,0 +1,22 @@
+﻿1e40260 fix: install react-is explicitly to fix vite compilation error
+e017282 fix: resolve github actions ubuntu strict node issues
+3fabfde docs: update live demo url to public render link
+9ee79cc .
+37bedec fix: correct render yaml blueprint format
+9d98c81 fix: final settings for reliable local presentation
+386fa3a chore: remove gh-pages push for guaranteed green pipeline
+dccc3ea .
+8a1f680 chore: fix render build pipeline and node version
+81abede .
+8b54eea updated README.md
+13e0b4b .
+0ac65d0 Add files via upload
+6bcc7b0 updated README.md
+92e00fa Updated README
+b569e30 Final Enterprise Azure Dashboard Update
+ed63043 Azure Demand
+0e3689b Azure Demand - Final CI/CD
+73987a0 Azure Demand - Fixed Render Deployment Errors (Monorepo Blueprint)
+540ec80 Azure Demand - Added MIT License
+3bbf11d Azure Demand - Added Documentation
+0c6b4db Azure Demand

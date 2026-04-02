@@ -13,7 +13,7 @@ services:
   - type: static
     name: azure-forecast-dashboard
     runtime: node
-    buildCommand: cd frontend && npm install && npm run build
+    buildCommand: cd frontend && npm install --legacy-peer-deps && npm run build
     publishPath: frontend/dist
     envVars:
       - key: NODE_VERSION

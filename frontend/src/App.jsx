@@ -67,6 +67,7 @@ const WorldMap = ({ regions = [], onRegionClick, activeRegion = 'All' }) => {
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [connectionError, setConnectionError] = useState(false);
   const fileInputRef = useRef(null);
 
   // Filters
@@ -94,9 +95,12 @@ function App() {
   const [simEfficiency, setSimEfficiency] = useState(0.9); // 90% efficiency
 
   // Dynamic API Base URL for Production (Render/Azure)
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:10000';
+  // Ensure it doesn't have a trailing slash for consistency
+  const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:10000').replace(/\/$/, "");
 
   const fetchData = async () => {
+    console.log(`Connecting to: ${API_BASE_URL}`);
+    setConnectionError(false);
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE_URL}/forecast-data`);
@@ -128,6 +132,8 @@ function App() {
         setAiInsights(json.insights || []);
       }
     } catch (error) {
+      console.error(`API Error on ${API_BASE_URL}:`, error);
+      setConnectionError(true);
       console.log("Using generated mock data for dashboard preview...");
       setData(generateMockData());
     } finally {
@@ -915,6 +921,32 @@ function App() {
       </aside>
 
       <main className="main-content">
+        {connectionError && (
+          <div className="glass-card" style={{ 
+            background: 'rgba(239, 68, 68, 0.15)', 
+            border: '1px solid rgba(239, 68, 68, 0.3)', 
+            color: '#ef4444', 
+            padding: '1rem', 
+            marginBottom: '1.5rem', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '1rem',
+            borderRadius: '12px',
+            fontSize: '0.85rem'
+          }}>
+            <AlertCircle size={20} />
+            <div>
+              <strong>Backend Connection Unavailable:</strong> Redirecting to {API_BASE_URL} failed. 
+              The dashboard is currently running in <strong>Simulation Mode</strong> with mock data.
+            </div>
+            <button 
+              onClick={fetchData} 
+              style={{ marginLeft: 'auto', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', padding: '0.4rem 0.8rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.75rem' }}
+            >
+              Retry Connection
+            </button>
+          </div>
+        )}
         <header className="header" style={{ borderBottom: 'none', paddingBottom: '0.25rem' }}>
           <div>
             <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', color: '#fff', fontSize: 'clamp(1.2rem, 1.8vw, 1.75rem)', whiteSpace: 'nowrap', fontWeight: 600 }}>

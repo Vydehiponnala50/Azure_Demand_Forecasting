@@ -76,7 +76,7 @@ jobs:
 
     - name: Install Frontend Dependencies
       working-directory: frontend
-      run: npm install && npm install react-is
+      run: npm install --legacy-peer-deps
 
     - name: Build Frontend (Vite)
       working-directory: frontend
@@ -85,5 +85,13 @@ jobs:
         # Point the app at the live Render backend
         VITE_API_URL: "https://azure-forecast-backend.onrender.com"
 
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./frontend/dist
+        force_orphan: true
+
     - name: Verify Frontend Build Success
-      run: echo "✅ Frontend compiled successfully! Ready for Render deployment."
+      run: echo "✅ Frontend compiled and deployed successfully!"
