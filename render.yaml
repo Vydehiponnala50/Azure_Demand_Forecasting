@@ -10,11 +10,11 @@ services:
         value: 3.10.12
 
   # Frontend: Static Site
-  - type: static
+  - type: web
     name: azure-forecast-dashboard
-    runtime: node
+    runtime: static
     buildCommand: cd frontend && npm install --legacy-peer-deps && npm run build
-    publishPath: frontend/dist
+    staticPublishPath: frontend/dist
     envVars:
       - key: NODE_VERSION
         value: 20.10.0
