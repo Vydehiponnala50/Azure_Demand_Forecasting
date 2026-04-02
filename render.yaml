@@ -3,7 +3,7 @@ services:
   - type: web
     name: azure-forecast-backend
     runtime: python
-    buildCommand: python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+    buildCommand: python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && python scripts/generate_data.py && python scripts/train.py
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
